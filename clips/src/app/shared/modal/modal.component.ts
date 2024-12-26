@@ -24,4 +24,9 @@ export class ModalComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.modal.register(this.id(), this.dialog().nativeElement);
   }
+  closeModal($event: Event) {
+    console.log(`closeModal`);
+    $event.preventDefault();
+    this.modal.toggle(this.id());
+  }
 }
