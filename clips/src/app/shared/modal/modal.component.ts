@@ -5,6 +5,7 @@ import {
   ElementRef,
   viewChild,
   AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 
@@ -15,7 +16,7 @@ import { ModalService } from '../../services/modal.service';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })
-export class ModalComponent implements AfterViewInit {
+export class ModalComponent implements AfterViewInit, OnDestroy {
   modal = inject(ModalService);
   id = input.required<string>();
   dialog = viewChild.required<ElementRef<HTMLDialogElement>>('baseDialog');
@@ -28,5 +29,8 @@ export class ModalComponent implements AfterViewInit {
     console.log(`closeModal`);
     $event.preventDefault();
     this.modal.toggle(this.id());
+  }
+  ngOnDestroy() {
+    this.modal.unregistermModal(this.id());
   }
 }

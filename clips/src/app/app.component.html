@@ -250,4 +250,6 @@
 </section>
 
 <!-- Auth Modal -->
-<app-auth-modal></app-auth-modal>
+ @if (showModal()) {
+  <app-auth-modal></app-auth-modal>
+ }
