@@ -3,10 +3,14 @@
   @for (tab of tabs(); track $index) {
   <li class="flex-auto text-center">
     <a
-      class="block rounded py-3 px-4 transition hover:text-white text-white bg-indigo-400"
+      class="block rounded py-3 px-4 transition hover:text-white text-white "
       href="#"
-      >{{tab.tabTitle()}}</a
-    >
+      [ngClass]="{
+        'hover:text-indigo-400':!tab.active(),
+        'hover:text-white text-white bg-indigo-400':tab.active()
+        }"
+      (click)="setActiveTab(tab)"
+      >{{ tab.tabTitle() }}</a>
   </li>
   }
 </ul>
